@@ -39,15 +39,15 @@ const slugify = require('slugify');
 // tag.createTags(tagsList);
 
 // const newPost = {
-//     title: 'NodeJs Tutorial',
-//     slug: slugify('NodeJs Tutorial'),
-//     content: 'This is a tutorial on NodeJs',
+//     title: 'This excercise was really easy',
+//     slug: slugify('This excercise was really easy'),
+//     content: 'prisma orm is amazing!',
 //     published: true,
-//     categoryId: 2,
+//     categoryId: 1,
 //     tags: {
 //         connect: [
-//             { id: 1 },
-//             { id: 2 }
+//             { id: 2 },
+//             { id: 4 }
 //         ]
 //     }
 // }
@@ -56,4 +56,7 @@ const slugify = require('slugify');
 
 // post.readAllPost();
 // post.readUniquePost('NodeJs Tutorial'); -- CONVERTE IL TITOLO IN SLUG ED EFFETTUA LA RICERCA DEL POST
+
+post.readByString('tutorial');
+post.publishedPost();
 

@@ -79,11 +79,62 @@ const deletePost = (postId) => {
 
 }
 
+// (BONUS) POST - READ ONLY PUBLISHED
+
+const publishedPost = () => {
+
+    prisma.post.findMany({
+        where: {
+            published: true
+        },
+        include: {
+            category: {
+                select: {
+                    name: true
+                }
+            },
+            tags: {
+                select: {
+                    name: true
+                }
+            }
+        }
+    }).then(p => console.log('Here\'s all the posts published in ur blog:', p)).catch(err => console.error(err))
+
+}
+
+// (BONUS) POST - READ ONLY IF CONTAINS SPECIFIC GIVEN STRING
+
+const readByString = (str) => {
+
+    prisma.post.findMany({
+        where: {
+            content: {
+                contains: str
+            }
+        },
+        include: {
+            category: {
+                select: {
+                    name: true
+                }
+            },
+            tags: {
+                select: {
+                    name: true
+                }
+            }
+        }
+    }).then(p => console.log(`Here\'s all the posts with ${str} in ur blog:`, p)).catch(err => console.error(err))
+}
+
 module.exports = {
     createPost,
     readUniquePost,
     readAllPost,
     updatePost,
-    deletePost
+    deletePost,
+    publishedPost,
+    readByString
 }
 
