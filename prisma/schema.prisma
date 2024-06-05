@@ -12,3 +12,29 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Post {
+  id         Int      @id @default(autoincrement())
+  title      String
+  slug       String   @unique
+  image      String?  @default("null")
+  content    String
+  published  Boolean
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  tags       Tag[]
+}
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String
+  Post Post[]
+}
+
+model Tag {
+  id    Int    @id @default(autoincrement())
+  name  String
+  posts Post[]
+}
